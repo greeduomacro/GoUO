@@ -6,7 +6,7 @@
     <ProjectGuid>{DAE872E6-6899-427C-A75D-AD52526EBCDA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
-    <AssemblyName>RunUO Scripts</AssemblyName>
+    <AssemblyName>GoUO Scripts</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
@@ -155,7 +155,6 @@
     <Compile Include="Customs\FS - Bounty System\Items\BountyBoard.cs" />
     <Compile Include="Customs\FS - Bounty System\Items\BountyHead.cs" />
     <Compile Include="Customs\FS - Bounty System\Mobiles\BountyOfficer.cs" />
-    <Compile Include="Customs\Items\SmallTents.cs" />
     <Compile Include="Customs\Motd\motd.cs" />
     <Compile Include="Customs\Motd\motd_gump.cs" />
     <Compile Include="Customs\Poker\Card.cs" />
@@ -171,6 +170,9 @@
     <Compile Include="Customs\Poker\PokerDealer.cs" />
     <Compile Include="Customs\Poker\PokerGame.cs" />
     <Compile Include="Customs\Poker\PokerPlayer.cs" />
+    <Compile Include="Customs\SmallTents.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Engines\BulkOrders\Books\BOBFilter.cs" />
     <Compile Include="Engines\BulkOrders\Books\BOBFilterGump.cs" />
     <Compile Include="Engines\BulkOrders\Books\BOBGump.cs" />

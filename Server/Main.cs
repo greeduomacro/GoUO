@@ -2,8 +2,8 @@
  *                                  Main.cs
  *                            -------------------
  *   begin                : May 1, 2002
- *   copyright            : (C) The RunUO Software Team
- *   email                : info@runuo.com
+ *   copyright            : (C) The GoUO Software Team
+ *   email                : info@gouo.com
  *
  *   $Id$
  *
@@ -493,13 +493,21 @@ namespace Server
 			Version ver = m_Assembly.GetName().Version;
 
 			// Added to help future code support on forums, as a 'check' people can ask for to it see if they recompiled core or not
-			Console.WriteLine("RunUO - [https://github.com/runuo/] Version {0}.{1}.{2}.{3}", ver.Major, ver.Minor, ver.Build, ver.Revision);
-			Console.WriteLine("Core: Running on .NET Framework Version {0}.{1}.{2}", Environment.Version.Major, Environment.Version.Minor, Environment.Version.Build);
-
+			Utility.PushColor(ConsoleColor.DarkGreen);
+			Console.WriteLine(@"----------------------------------------------------------------------------");
+			Utility.PopColor();
+			Utility.PushColor(ConsoleColor.Cyan);
+			Console.WriteLine(
+			"GoUO - [https://github.com/gouo/] Version {0}.{1}.{2}.{3}", ver.Major, ver.Minor, ver.Build, ver.Revision);
+			Utility.PopColor();
+			
 			string s = Arguments;
 
 			if( s.Length > 0 )
+				Utility.PushColor(ConsoleColor.Yellow);
 				Console.WriteLine( "Core: Running with arguments: {0}", s );
+				Utility.PopColor();
+				
 
 			m_ProcessorCount = Environment.ProcessorCount;
 
@@ -507,12 +515,16 @@ namespace Server
 				m_MultiProcessor = true;
 
 			if( m_MultiProcessor || Is64Bit )
+				Utility.PushColor(ConsoleColor.Green);
 				Console.WriteLine( "Core: Optimizing for {0} {2}processor{1}", m_ProcessorCount, m_ProcessorCount == 1 ? "" : "s", Is64Bit ? "64-bit " : "" );
+				Utility.PopColor();
 
 			int platform = (int)Environment.OSVersion.Platform;
 			if( platform == 4 || platform == 128 ) { // MS 4, MONO 128
 				m_Unix = true;
+				Utility.PushColor(ConsoleColor.Yellow);
 				Console.WriteLine( "Core: Unix environment detected" );
+				Utility.PopColor();
 			}
 			else {
 				m_ConsoleEventHandler = new ConsoleEventHandler( OnConsoleEvent );
@@ -520,12 +532,16 @@ namespace Server
 			}
 
 			if ( GCSettings.IsServerGC )
+				Utility.PushColor(ConsoleColor.DarkYellow);
 				Console.WriteLine("Core: Server garbage collection mode enabled");
+				Utility.PopColor();
 
 			if (_UseHRT)
 				Console.WriteLine("Core: Requested high resolution timing ({0})", UsingHighResolutionTiming ? "Supported" : "Unsupported");
 
+			Utility.PushColor(ConsoleColor.Yellow);
 			Console.WriteLine("RandomImpl: {0} ({1})", RandomImpl.Type.Name, RandomImpl.IsHardwareRNG ? "Hardware" : "Software");
+			Utility.PopColor();
 
 			while( !ScriptCompiler.Compile( m_Debug, m_Cache ) )
 			{
