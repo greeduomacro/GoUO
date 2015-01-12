@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/14/trunk/donation_store/web
+END
+admin_ops.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/8/trunk/donation_store/web/admin_ops.php
+END
+mysqldb_lib.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/2/trunk/donation_store/web/mysqldb_lib.php
+END
+donation_paypal_ipn_handler.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/14/trunk/donation_store/web/donation_paypal_ipn_handler.php
+END
+get_button_code.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/15/trunk/donation_store/web/get_button_code.php
+END
+admin_util.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/6/trunk/donation_store/web/admin_util.php
+END
+adminpage.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/15/trunk/donation_store/web/adminpage.php
+END
+config.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/2/trunk/donation_store/web/config.php
+END
