@@ -48,7 +48,7 @@ namespace Joeku.SR
 
 		public static void ReadAccountNode( XmlElement parent )
 		{
-			Utility.PushColor(ConsoleColor.Yellow);
+			Utility.PushColor(ConsoleColor.Green);
 			Console.Write( "  Account: {0}... ", parent.GetAttribute("Username") );
 			Utility.PopColor();
 			try
