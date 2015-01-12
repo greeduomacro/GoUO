@@ -11,7 +11,7 @@ namespace Server.CurseWebsite
 {
 	public class StatusPage : Timer
 	{
-		public static bool Enabled = true;
+		public static bool Enabled = false;
 
 		public static void Initialize()
 		{
