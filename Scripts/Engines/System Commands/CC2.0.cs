@@ -29,7 +29,9 @@ namespace Server.Misc
         public static void EventSink_ServerStarted()
         {
             ThreadPool.QueueUserWorkItem(new WaitCallback(ConsoleListen));
-            Console.WriteLine("CC initialized...");
+			Utility.PushColor(ConsoleColor.Green);
+            Console.WriteLine("Console Commands initialized...");
+			Utility.PopColor();
         }
         private static void OnSpeech(SpeechEventArgs args)
         {
