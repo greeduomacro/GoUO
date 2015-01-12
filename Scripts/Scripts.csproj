@@ -129,50 +129,13 @@
     <Compile Include="Context Menus\EjectPlayer.cs" />
     <Compile Include="Context Menus\OpenBankEntry.cs" />
     <Compile Include="Context Menus\TeachEntry.cs" />
-    <Compile Include="Customs\Commands &amp; System Stuff\EasyUO.cs" />
-    <Compile Include="Customs\Commands &amp; System Stuff\Emote.cs" />
-    <Compile Include="Customs\Commands &amp; System Stuff\FillBOD.cs" />
-    <Compile Include="Customs\Commands &amp; System Stuff\FindboatGump.cs" />
-    <Compile Include="Customs\Commands &amp; System Stuff\FindByName.cs" />
-    <Compile Include="Customs\Commands &amp; System Stuff\FindHouseGump.cs" />
-    <Compile Include="Customs\Commands &amp; System Stuff\FindRunes.cs" />
-    <Compile Include="Customs\Commands &amp; System Stuff\IGumpWidget.cs" />
-    <Compile Include="Customs\Commands &amp; System Stuff\LoginBroadcast.cs" />
-    <Compile Include="Customs\Commands &amp; System Stuff\PasswordChanger.cs" />
-    <Compile Include="Customs\Commands &amp; System Stuff\PlayerInfo.cs" />
-    <Compile Include="Customs\Commands &amp; System Stuff\PreAOS Graphic Fix.cs" />
-    <Compile Include="Customs\Commands &amp; System Stuff\PreAOS Visible Damage.cs" />
-    <Compile Include="Customs\Economy System\Check Book.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Customs\Economy System\globalCountGold.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Customs\FS - Bounty System\Core\FSBountySystem.cs" />
-    <Compile Include="Customs\FS - Bounty System\Gumps\BountyDetailsGump.cs" />
-    <Compile Include="Customs\FS - Bounty System\Gumps\BountyHunterGump.cs" />
-    <Compile Include="Customs\FS - Bounty System\Gumps\CreateBountyGump.cs" />
-    <Compile Include="Customs\FS - Bounty System\Items\BountyBoard.cs" />
-    <Compile Include="Customs\FS - Bounty System\Items\BountyHead.cs" />
-    <Compile Include="Customs\FS - Bounty System\Mobiles\BountyOfficer.cs" />
-    <Compile Include="Customs\Motd\motd.cs" />
-    <Compile Include="Customs\Motd\motd_gump.cs" />
-    <Compile Include="Customs\Poker\Card.cs" />
-    <Compile Include="Customs\Poker\Deck.cs" />
-    <Compile Include="Customs\Poker\Enums.cs" />
-    <Compile Include="Customs\Poker\Gumps\PokerBetGump.cs" />
-    <Compile Include="Customs\Poker\Gumps\PokerJoinGump.cs" />
-    <Compile Include="Customs\Poker\Gumps\PokerLeaveGump.cs" />
-    <Compile Include="Customs\Poker\Gumps\PokerTableGump.cs" />
-    <Compile Include="Customs\Poker\HandRanker.cs" />
-    <Compile Include="Customs\Poker\JackpotBoard.cs" />
-    <Compile Include="Customs\Poker\PlayerStructure.cs" />
-    <Compile Include="Customs\Poker\PokerDealer.cs" />
-    <Compile Include="Customs\Poker\PokerGame.cs" />
-    <Compile Include="Customs\Poker\PokerPlayer.cs" />
-    <Compile Include="Customs\SmallTents.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Engines\Bounty System\Core\FSBountySystem.cs" />
+    <Compile Include="Engines\Bounty System\Gumps\BountyDetailsGump.cs" />
+    <Compile Include="Engines\Bounty System\Gumps\BountyHunterGump.cs" />
+    <Compile Include="Engines\Bounty System\Gumps\CreateBountyGump.cs" />
+    <Compile Include="Engines\Bounty System\Items\BountyBoard.cs" />
+    <Compile Include="Engines\Bounty System\Items\BountyHead.cs" />
+    <Compile Include="Engines\Bounty System\Mobiles\BountyOfficer.cs" />
     <Compile Include="Engines\BulkOrders\Books\BOBFilter.cs" />
     <Compile Include="Engines\BulkOrders\Books\BOBFilterGump.cs" />
     <Compile Include="Engines\BulkOrders\Books\BOBGump.cs" />
@@ -198,18 +161,18 @@
     <Compile Include="Engines\BulkOrders\SmallBulkEntry.cs" />
     <Compile Include="Engines\BulkOrders\SmallSmithBOD.cs" />
     <Compile Include="Engines\BulkOrders\SmallTailorBOD.cs" />
-    <Compile Include="Engines\CannedEvil\ChampionAltar.cs" />
-    <Compile Include="Engines\CannedEvil\ChampionPlatform.cs" />
-    <Compile Include="Engines\CannedEvil\ChampionSkull.cs" />
-    <Compile Include="Engines\CannedEvil\ChampionSkullBrazier.cs" />
-    <Compile Include="Engines\CannedEvil\ChampionSkullPlatform.cs" />
-    <Compile Include="Engines\CannedEvil\ChampionSkullType.cs" />
-    <Compile Include="Engines\CannedEvil\ChampionSpawn.cs" />
-    <Compile Include="Engines\CannedEvil\ChampionSpawnType.cs" />
-    <Compile Include="Engines\CannedEvil\HarrowerGate.cs" />
-    <Compile Include="Engines\CannedEvil\RestartTimer.cs" />
-    <Compile Include="Engines\CannedEvil\SliceTimer.cs" />
-    <Compile Include="Engines\CannedEvil\StarRoomGate.cs" />
+    <Compile Include="Engines\Champion System\ChampionAltar.cs" />
+    <Compile Include="Engines\Champion System\ChampionPlatform.cs" />
+    <Compile Include="Engines\Champion System\ChampionSkull.cs" />
+    <Compile Include="Engines\Champion System\ChampionSkullBrazier.cs" />
+    <Compile Include="Engines\Champion System\ChampionSkullPlatform.cs" />
+    <Compile Include="Engines\Champion System\ChampionSkullType.cs" />
+    <Compile Include="Engines\Champion System\ChampionSpawn.cs" />
+    <Compile Include="Engines\Champion System\ChampionSpawnType.cs" />
+    <Compile Include="Engines\Champion System\HarrowerGate.cs" />
+    <Compile Include="Engines\Champion System\RestartTimer.cs" />
+    <Compile Include="Engines\Champion System\SliceTimer.cs" />
+    <Compile Include="Engines\Champion System\StarRoomGate.cs" />
     <Compile Include="Engines\Chat\Channel.cs" />
     <Compile Include="Engines\Chat\Chat.cs" />
     <Compile Include="Engines\Chat\ChatActionHandler.cs" />
@@ -281,6 +244,8 @@
     <Compile Include="Engines\Doom\LeverPuzzle\LeverPuzzleController.cs" />
     <Compile Include="Engines\Doom\LeverPuzzle\LeverPuzzleItems.cs" />
     <Compile Include="Engines\Doom\LeverPuzzle\LeverPuzzleRegions.cs" />
+    <Compile Include="Engines\Economy System\Check Book.cs" />
+    <Compile Include="Engines\Economy System\globalCountGold.cs" />
     <Compile Include="Engines\Ethics\Core\Ethic.cs" />
     <Compile Include="Engines\Ethics\Core\Persistance.cs" />
     <Compile Include="Engines\Ethics\Core\Player.cs" />
@@ -539,6 +504,8 @@
     <Compile Include="Engines\MLQuests\Rewards\BaseReward.cs" />
     <Compile Include="Engines\MLQuests\Rewards\DummyReward.cs" />
     <Compile Include="Engines\MLQuests\Rewards\ItemReward.cs" />
+    <Compile Include="Engines\Motd\motd.cs" />
+    <Compile Include="Engines\Motd\motd_gump.cs" />
     <Compile Include="Engines\MyRunUO\Config.cs" />
     <Compile Include="Engines\MyRunUO\DatabaseCommandQueue.cs" />
     <Compile Include="Engines\MyRunUO\LayerComparer.cs" />
@@ -578,6 +545,19 @@
     <Compile Include="Engines\Plants\ReproductionGump.cs" />
     <Compile Include="Engines\Plants\Seed.cs" />
     <Compile Include="Engines\Plants\SetToDecorativeGump.cs" />
+    <Compile Include="Engines\Poker\Card.cs" />
+    <Compile Include="Engines\Poker\Deck.cs" />
+    <Compile Include="Engines\Poker\Enums.cs" />
+    <Compile Include="Engines\Poker\Gumps\PokerBetGump.cs" />
+    <Compile Include="Engines\Poker\Gumps\PokerJoinGump.cs" />
+    <Compile Include="Engines\Poker\Gumps\PokerLeaveGump.cs" />
+    <Compile Include="Engines\Poker\Gumps\PokerTableGump.cs" />
+    <Compile Include="Engines\Poker\HandRanker.cs" />
+    <Compile Include="Engines\Poker\JackpotBoard.cs" />
+    <Compile Include="Engines\Poker\PlayerStructure.cs" />
+    <Compile Include="Engines\Poker\PokerDealer.cs" />
+    <Compile Include="Engines\Poker\PokerGame.cs" />
+    <Compile Include="Engines\Poker\PokerPlayer.cs" />
     <Compile Include="Engines\Quests\Ambitious Solen Queen\AmbitiousQueenQuest.cs" />
     <Compile Include="Engines\Quests\Ambitious Solen Queen\Conversations.cs" />
     <Compile Include="Engines\Quests\Ambitious Solen Queen\Mobiles\AmbitiousSolenQueen.cs" />
@@ -756,6 +736,7 @@
     <Compile Include="Engines\Spawner\Spawner.cs" />
     <Compile Include="Engines\Spawner\SpawnerGump.cs" />
     <Compile Include="Engines\Spawner\SpawnerType.cs" />
+    <Compile Include="Engines\System Commands\PlayerInfo.cs" />
     <Compile Include="Engines\Treasures of Tokuno\BasePigmentsOfTokuno.cs" />
     <Compile Include="Engines\Treasures of Tokuno\GreaterArtifacts.cs" />
     <Compile Include="Engines\Treasures of Tokuno\LesserArtifacts.cs" />
@@ -2408,7 +2389,6 @@
     <Compile Include="Misc\AccountPrompt.cs" />
     <Compile Include="Misc\Animations.cs" />
     <Compile Include="Misc\AOS.cs" />
-    <Compile Include="Misc\Assistants.cs" />
     <Compile Include="Misc\AttackMessage.cs" />
     <Compile Include="Misc\AutoRestart.cs" />
     <Compile Include="Misc\AutoSave.cs" />
@@ -2446,7 +2426,6 @@
     <Compile Include="Misc\Loot.cs" />
     <Compile Include="Misc\LootPack.cs" />
     <Compile Include="Misc\MapDefinitions.cs" />
-    <Compile Include="Misc\MapUO.cs" />
     <Compile Include="Misc\MondainsLegacy.cs" />
     <Compile Include="Misc\NameList.cs" />
     <Compile Include="Misc\NameVerification.cs" />
@@ -3102,6 +3081,7 @@
     <Compile Include="Multis\HouseTeleporter.cs" />
     <Compile Include="Multis\MovingCrate.cs" />
     <Compile Include="Multis\PreviewHouse.cs" />
+    <Compile Include="Multis\SmallTents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Regions\BaseRegion.cs" />
     <Compile Include="Regions\DungeonRegion.cs" />
@@ -3306,7 +3286,7 @@
     <Compile Include="Targets\PickMoveTarget.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Customs\Poker\ReadME.txt" />
+    <Content Include="Engines\Poker\ReadME.txt" />
     <Content Include="SpecialSystems\README.TXT" />
   </ItemGroup>
   <ItemGroup>

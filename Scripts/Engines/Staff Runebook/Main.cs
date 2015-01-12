@@ -16,65 +16,63 @@ using Server.Commands;
 
 namespace Joeku.SR
 {
-    public class SR_Main
-    {
-        public static int Version = 110;
-        public static string ReleaseDate = "February 4, 2009";
-        public static string SavePath = "Saves\\Staff Runebook";// "ROOT\..."
-        public static string FileName = "Rune Accounts.xml";
-        public static List<SR_RuneAccount> Info = new List<SR_RuneAccount>();
-        public static int Count
-        {
-            get
-            {
-                return Info.Count;
-            }
-        }
-        // public SR_Main(){}
-        [CallPriority(100)]
-        public static void Initialize()
-        {
-            if (Info.Count == 0)
-                SR_Load.ReadData(Path.Combine(SavePath, FileName));
+	public class SR_Main
+	{
+		public static int Version = 110;
+		public static string ReleaseDate = "February 4, 2009";
+		public static string SavePath = "Saves/Staff Runebook"; // "ROOT\..."
+		//public static string SavePath = "Saves\\Staff Runebook"; // "ROOT\..."
+		public static string FileName = "Rune Accounts.xml";
+		public static List<SR_RuneAccount> Info = new List<SR_RuneAccount>();
+		public static int Count{ get{ return Info.Count; } }
 
-            CommandHandlers.Register("StaffRunebook", AccessLevel.Counselor, new CommandEventHandler(SR_OnCommand));
-            CommandHandlers.Register("SR", AccessLevel.Counselor, new CommandEventHandler(SR_OnCommand));
-            CommandHandlers.Register("StaffRunebookReset", AccessLevel.Counselor, new CommandEventHandler(SR_Reset_OnCommand));
-            EventSink.WorldSave += new WorldSaveEventHandler(EventSink_WorldSave);
-        }
+		// public SR_Main(){}
 
-        [Usage("StaffRunebook")]
-        [Aliases("SR")]
-        public static void SR_OnCommand(CommandEventArgs e)
-        {
-            Mobile mob = e.Mobile;
+		[CallPriority( 100 )]
+		public static void Initialize()
+		{
+			if( Info.Count == 0 )
+				SR_Load.ReadData(Path.Combine( SavePath, FileName ));
 
-            SR_Gump.Send(mob, SR_Utilities.FetchInfo(mob.Account));
-        }
+			CommandHandlers.Register("StaffRunebook", AccessLevel.Counselor, new CommandEventHandler(SR_OnCommand));
+			CommandHandlers.Register("SR", AccessLevel.Counselor, new CommandEventHandler(SR_OnCommand));
+			CommandHandlers.Register("StaffRunebookReset", AccessLevel.Counselor, new CommandEventHandler(SR_Reset_OnCommand));
+			EventSink.WorldSave += new WorldSaveEventHandler( EventSink_WorldSave );
+		}
 
-        [Usage("StaffRunebookReset")]
-        public static void SR_Reset_OnCommand(CommandEventArgs e)
-        {
-            Mobile mob = e.Mobile;
+		[Usage("StaffRunebook")]
+		[Aliases( "SR" )]
+		public static void SR_OnCommand(CommandEventArgs e)
+		{
+			Mobile mob = e.Mobile;
 
-            SR_Utilities.NewRuneAcc(SR_Utilities.FetchInfo(mob.Account));	
+			SR_Gump.Send( mob, SR_Utilities.FetchInfo( mob.Account ) );
+		}
 
-            mob.SendMessage("Your staff runebook has been reset to default.");
-        }
+		[Usage("StaffRunebookReset")]
+		public static void SR_Reset_OnCommand(CommandEventArgs e)
+		{
+			Mobile mob = e.Mobile;
 
-        public static void AddInfo(SR_RuneAccount runeAccount)
-        {
-            for (int i = 0; i < Info.Count; i++)
-                if (Info[i].Username == runeAccount.Username)
-                    Info.RemoveAt(i);
+			SR_Utilities.NewRuneAcc( SR_Utilities.FetchInfo( mob.Account ) );	
 
-            Info.Add(runeAccount);
-        }
+			mob.SendMessage( "Your staff runebook has been reset to default." );
+		}
 
-        private static void EventSink_WorldSave(WorldSaveEventArgs e)
-        {
-            // Args: bool e.Message
-            SR_Save.WriteData();
-        }
-    }
+		private static void EventSink_WorldSave( WorldSaveEventArgs e )
+		{
+			// Args: bool e.Message
+
+			SR_Save.WriteData();
+		}
+
+		public static void AddInfo( SR_RuneAccount runeAccount )
+		{
+			for( int i = 0; i < Info.Count; i++ )
+				if( Info[i].Username == runeAccount.Username )
+					Info.RemoveAt(i);
+
+			Info.Add( runeAccount );
+		}
+	}
 }

@@ -1,92 +1,68 @@
-﻿#region References
 using System;
 using System.Collections.Generic;
-
-using Server.Gumps;
+using Server;
 using Server.Network;
-#endregion
+using Server.Gumps;
 
 namespace Server.Misc
 {
-	public static class Assistants
+	public static partial class Assistants
 	{
-		[Flags]
-		public enum Features : ulong
+		private static class Settings
 		{
-			None = 0,
+			public const bool Enabled = false;
+			public const bool KickOnFailure = true; // It will also kick clients running without assistants
 
-			FilterWeather = 1 << 0, // Weather Filter
-			FilterLight = 1 << 1, // Light Filter
-			SmartTarget = 1 << 2, // Smart Last Target
-			RangedTarget = 1 << 3, // Range Check Last Target
-			AutoOpenDoors = 1 << 4, // Automatically Open Doors
-			DequipOnCast = 1 << 5, // Unequip Weapon on spell cast
-			AutoPotionEquip = 1 << 6, // Un/Re-equip weapon on potion use
-			PoisonedChecks = 1 << 7, // Block heal If poisoned/Macro If Poisoned condition/Heal or Cure self
-			LoopedMacros = 1 << 8, // Disallow Looping macros, For loops, and macros that call other macros
-			UseOnceAgent = 1 << 9, // The use once agent
-			RestockAgent = 1 << 10, // The restock agent
-			SellAgent = 1 << 11, // The sell agent
-			BuyAgent = 1 << 12, // The buy agent
-			PotionHotkeys = 1 << 13, // All potion hotkeys
-			RandomTargets = 1 << 14, // All random target hotkeys (not target next, last target, target self)
-			ClosestTargets = 1 << 15, // All closest target hotkeys
-			OverheadHealth = 1 << 16, // Health and Mana/Stam messages shown over player's heads
+			public static readonly TimeSpan HandshakeTimeout = TimeSpan.FromSeconds(30.0);
+			public static readonly TimeSpan DisconnectDelay = TimeSpan.FromSeconds(15.0);
 
-			// AssistUO Only
-			AutolootAgent = 1 << 17, // The autoloot agent
-			BoneCutterAgent = 1 << 18, // The bone cutter agent
-			JScriptMacros = 1 << 19, // Javascript macro engine
-			AutoRemount = 1 << 20, // Auto remount after dismount
-
-			All = UInt64.MaxValue // Every feature possible
-		}
-
-		public class Settings
-		{
-			/// <summary>
-			///     Enable assistant negotiator?
-			/// </summary>
-			public static bool Enabled { get; set; }
-
-			/// <summary>
-			///     When true, this will cause anyone who does not negotiate.
-			///     (include those not running allowed assistants at all) to be disconnected from the server.
-			/// </summary>
-			public static bool KickOnFailure { get; set; }
-
-			public static Features DisallowedFeatures { get; private set; }
-
-			/// <summary>
-			///     How long to wait for a handshake response before showing warning and disconnecting.
-			/// </summary>
-			public static TimeSpan HandshakeTimeout { get; set; }
-
-			/// <summary>
-			///     How long to show warning message before they are disconnected.
-			/// </summary>
-			public static TimeSpan DisconnectDelay { get; set; }
-
-			public static string WarningMessage { get; set; }
-
-			static Settings()
-			{
-				Enabled = false;
-				KickOnFailure = true;
-
-				DisallowedFeatures = Features.None;
-
-				HandshakeTimeout = TimeSpan.FromSeconds(30.0);
-				DisconnectDelay = TimeSpan.FromSeconds(15.0);
-
-				WarningMessage =
-					"The server was unable to negotiate features with your assistant. You must download and run an updated version of <A HREF='http://www.runuo.com/products/assistuo'>AssistUO</A> or <A HREF='http://www.runuo.com/products/razor'>Razor</A>.<BR><BR>Make sure you've checked the option <B>Negotiate features with server</B>, once you have this box checked you may log in and play normally.<BR><BR>You will be disconnected shortly.";
-			}
+			public const string WarningMessage = "The server was unable to negotiate features with your assistant. "
+								+ "You must download and run an updated version of <A HREF=\"http://uosteam.com\">UOSteam</A>"
+								+ " or <A HREF=\"https://bitbucket.org/msturgill/razor-releases/downloads\">Razor</A>."
+								+ "<BR><BR>Make sure you've checked the option <B>Negotiate features with server</B>, "
+								+ "once you have this box checked you may log in and play normally."
+								+ "<BR><BR>You will be disconnected shortly.";
 
 			public static void Configure()
 			{
-				//DisallowFeature( Features.FilterLight );
+				//DisallowFeature( Features.FilterWeather );
 			}
+
+			[Flags]
+			public enum Features : ulong
+			{
+				None = 0,
+
+				FilterWeather = 1 << 0,  // Weather Filter
+				FilterLight = 1 << 1,  // Light Filter
+				SmartTarget = 1 << 2,  // Smart Last Target
+				RangedTarget = 1 << 3,  // Range Check Last Target
+				AutoOpenDoors = 1 << 4,  // Automatically Open Doors
+				DequipOnCast = 1 << 5,  // Unequip Weapon on spell cast
+				AutoPotionEquip = 1 << 6,  // Un/re-equip weapon on potion use
+				PoisonedChecks = 1 << 7,  // Block heal If poisoned/Macro If Poisoned condition/Heal or Cure self
+				LoopedMacros = 1 << 8,  // Disallow looping or recursive macros
+				UseOnceAgent = 1 << 9,  // The use once agent
+				RestockAgent = 1 << 10, // The restock agent
+				SellAgent = 1 << 11, // The sell agent
+				BuyAgent = 1 << 12, // The buy agent
+				PotionHotkeys = 1 << 13, // All potion hotkeys
+				RandomTargets = 1 << 14, // All random target hotkeys (not target next, last target, target self)
+				ClosestTargets = 1 << 15, // All closest target hotkeys
+				OverheadHealth = 1 << 16, // Health and Mana/Stam messages shown over player's heads
+				AutolootAgent = 1 << 17, // The autoloot agent
+				BoneCutterAgent = 1 << 18, // The bone cutter agent
+				AdvancedMacros = 1 << 19, // Advanced macro engine
+				AutoRemount = 1 << 20, // Auto remount after dismount
+				AutoBandage = 1 << 21, // Auto bandage friends, self, last and mount option
+				EnemyTargetShare = 1 << 22, // Enemy target share on guild, party or alliance chat
+				FilterSeason = 1 << 23, // Season Filter
+				SpellTargetShare = 1 << 24, // Spell target share on guild, party or alliance chat
+
+				All = ulong.MaxValue
+			}
+
+			private static Features m_DisallowedFeatures = Features.None;
 
 			public static void DisallowFeature(Features feature)
 			{
@@ -101,79 +77,48 @@ namespace Server.Misc
 			public static void SetDisallowed(Features feature, bool value)
 			{
 				if (value)
-				{
-					DisallowedFeatures |= feature;
-				}
+					m_DisallowedFeatures |= feature;
 				else
-				{
-					DisallowedFeatures &= ~feature;
-				}
+					m_DisallowedFeatures &= ~feature;
 			}
+
+			public static Features DisallowedFeatures { get { return m_DisallowedFeatures; } }
 		}
 
-		public class Negotiator
+		private static class Negotiator
 		{
-			private static readonly Dictionary<Mobile, Timer> _Dictionary = new Dictionary<Mobile, Timer>();
+			private static Dictionary<Mobile, Timer> m_Dictionary = new Dictionary<Mobile, Timer>();
+
+			private static TimerStateCallback OnHandshakeTimeout_Callback = new TimerStateCallback(OnHandshakeTimeout);
+			private static TimerStateCallback OnForceDisconnect_Callback = new TimerStateCallback(OnForceDisconnect);
 
 			public static void Initialize()
 			{
-				if (!Settings.Enabled)
+				if (Settings.Enabled)
 				{
-					return;
+					EventSink.Login += new LoginEventHandler(EventSink_Login);
+					ProtocolExtensions.Register(0xFF, true, new OnPacketReceive(OnHandshakeResponse));
 				}
+			}
 
-				EventSink.Login += e =>
+			private static void EventSink_Login(LoginEventArgs e)
+			{
+				Mobile m = e.Mobile;
+
+				if (m != null && m.NetState != null && m.NetState.Running)
 				{
-					Mobile m = e.Mobile;
-
-					if (m == null || m.NetState == null || !m.NetState.Running)
-					{
-						return;
-					}
-
+					Timer t;
 					m.Send(new BeginHandshake());
 
-					if (_Dictionary.ContainsKey(m))
-					{
-						Timer t = _Dictionary[m];
+					if (Settings.KickOnFailure)
+						m.Send(new BeginHandshake());
 
-						if (t != null && t.Running)
-						{
-							t.Stop();
-						}
-					}
+					if (m_Dictionary.TryGetValue(m, out t) && t != null)
+						t.Stop();
 
-					_Dictionary[m] = Timer.DelayCall(Settings.HandshakeTimeout, OnHandshakeTimeout, m);
-				};
-
-				ProtocolExtensions.Register(
-					0xFF,
-					true,
-					(state, pvSrc) =>
-					{
-						pvSrc.Trace(state);
-
-						if (state == null || state.Mobile == null || !state.Running)
-						{
-							return;
-						}
-
-						Mobile m = state.Mobile;
-
-						if (!_Dictionary.ContainsKey(m))
-						{
-							return;
-						}
-
-						Timer t = _Dictionary[m];
-
-						if (t != null)
-						{
-							t.Stop();
-						}
-
-						_Dictionary.Remove(m);
-					});
+					m_Dictionary[m] = t = Timer.DelayCall(Settings.HandshakeTimeout, OnHandshakeTimeout_Callback, m);
+					t.Start();
+				}
 			}
 
 			private static void OnHandshakeResponse(NetState state, PacketReader pvSrc)
@@ -181,44 +126,29 @@ namespace Server.Misc
 				pvSrc.Trace(state);
 
 				if (state == null || state.Mobile == null || !state.Running)
-				{
 					return;
-				}
 
+				Timer t;
 				Mobile m = state.Mobile;
 
-				if (!_Dictionary.ContainsKey(m))
+				if (m_Dictionary.TryGetValue(m, out t))
 				{
-					return;
+					if (t != null)
+						t.Stop();
+
+					m_Dictionary.Remove(m);
 				}
-
-				Timer t = _Dictionary[m];
-
-				if (t != null)
-				{
-					t.Stop();
-				}
-
-				_Dictionary.Remove(m);
 			}
 
 			private static void OnHandshakeTimeout(object state)
 			{
+				Timer t = null;
 				Mobile m = state as Mobile;
 
 				if (m == null)
-				{
 					return;
-				}
 
-				Timer t;
-
-				if (_Dictionary.TryGetValue(m, out t) && t != null)
-				{
-					t.Stop();
-				}
-
-				_Dictionary.Remove(m);
+				m_Dictionary.Remove(m);
 
 				if (!Settings.KickOnFailure)
 				{
@@ -226,32 +156,29 @@ namespace Server.Misc
 				}
 				else if (m.NetState != null && m.NetState.Running)
 				{
-					m.SendGump(new WarningGump(1060635, 30720, Settings.WarningMessage, 0xFFC000, 420, 250, null, null));
+					m.SendGump(new Gumps.WarningGump(1060635, 30720, Settings.WarningMessage, 0xFFC000, 420, 250, null, null));
 
 					if (m.AccessLevel <= AccessLevel.Player)
 					{
-						_Dictionary[m] = Timer.DelayCall(Settings.DisconnectDelay, OnForceDisconnect, m);
+						m_Dictionary[m] = t = Timer.DelayCall(Settings.DisconnectDelay, OnForceDisconnect_Callback, m);
+						t.Start();
 					}
 				}
 			}
 
 			private static void OnForceDisconnect(object state)
 			{
-				if (!(state is Mobile))
+				if (state is Mobile)
 				{
-					return;
+					Mobile m = (Mobile)state;
+
+					if (m.NetState != null && m.NetState.Running)
+						m.NetState.Dispose();
+
+					m_Dictionary.Remove(m);
+
+					Console.WriteLine("Player {0} kicked (Failed assistant handshake)", m);
 				}
-
-				Mobile m = (Mobile)state;
-
-				if (m.NetState != null && m.NetState.Running)
-				{
-					m.NetState.Dispose();
-				}
-
-				_Dictionary.Remove(m);
-
-				Console.WriteLine("Player {0} kicked (Failed assistant handshake)", m);
 			}
 
 			private sealed class BeginHandshake : ProtocolExtension
