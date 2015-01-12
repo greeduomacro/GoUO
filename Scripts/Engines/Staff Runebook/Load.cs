@@ -25,7 +25,9 @@ namespace Joeku.SR
 				return;
 
 			Console.WriteLine();
-			Console.WriteLine("Joeku's Staff Runebook: Loading...");
+			Utility.PushColor(ConsoleColor.Yellow);
+			Console.WriteLine("Staff Runebook: Loading...");
+			Utility.PopColor();
 
 			XmlDocument doc = new XmlDocument();
 			doc.Load( filePath );
@@ -46,7 +48,9 @@ namespace Joeku.SR
 
 		public static void ReadAccountNode( XmlElement parent )
 		{
+			Utility.PushColor(ConsoleColor.Yellow);
 			Console.Write( "  Account: {0}... ", parent.GetAttribute("Username") );
+			Utility.PopColor();
 			try
 			{
 				SR_RuneAccount acc = new SR_RuneAccount(parent.GetAttribute("Username"));
@@ -71,7 +75,9 @@ namespace Joeku.SR
 			{
 				Console.WriteLine( "failed." );
 			}
+			Utility.PushColor(ConsoleColor.Green);
 			Console.WriteLine( "done." );
+			Utility.PopColor();
 		}
 
 		public static SR_Rune ReadRuneNode( XmlElement parent )
