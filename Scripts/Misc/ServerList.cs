@@ -39,7 +39,7 @@ namespace Server.Misc
 		 */
 
 		public static readonly string Address = null;
-		public static readonly string ServerName = "The Curse";
+		public static readonly string ServerName = "GoUO Test Server";
 
 		public static readonly bool AutoDetect = true;
 
