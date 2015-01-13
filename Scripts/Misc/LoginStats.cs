@@ -26,7 +26,6 @@ namespace Server.Misc
 				userCount, userCount == 1 ? "" : "s",
 				itemCount, itemCount == 1 ? "" : "s",
 				mobileCount, mobileCount == 1 ? "" : "s" );
-				m.SendGump ( new motdg() );
 		}
 	}
 }
