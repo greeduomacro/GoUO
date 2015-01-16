@@ -46,9 +46,9 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			Container pack = from.Backpack;
+			Container bank = from.BankBox;
 
-			if( pack != null && pack.ConsumeTotal( typeof( Gold ), 250 ) )
+			if( bank != null && bank.ConsumeTotal( typeof( Gold ), 250 ) )
 			{
 				m_GamblePot += 150;
 				InvalidateProperties();
@@ -63,29 +63,29 @@ namespace Server.Items
 
 					while( m_GamblePot > maxCheck )
 					{
-						from.AddToBackpack( new BankCheck( maxCheck ) );
+						from.BankBox.DropItem( new BankCheck( maxCheck ) );
 
 						m_GamblePot -= maxCheck;
 					}
 
-					from.AddToBackpack( new BankCheck( m_GamblePot ) );
+					from.BankBox.DropItem( new BankCheck( m_GamblePot ) );
 
 					m_GamblePot = 2500;
 				}
 				else if( roll <= 20 ) // Chance for a regbag
 				{
 					from.SendMessage( 0x35, "You win a bag of reagents!" );
-					from.AddToBackpack( new BagOfReagents( 50 ) );
+					from.BankBox.DropItem( new BagOfReagents( 50 ) );
 				}
 				else if( roll <= 40 ) // Chance for gold
 				{
 					from.SendMessage( 0x35, "You win 1500gp!" );
-					from.AddToBackpack( new BankCheck( 1500 ) );
+					from.BankBox.DropItem( new BankCheck( 1500 ) );
 				}
 				else if( roll <= 100 ) // Another chance for gold
 				{
 					from.SendMessage( 0x35, "You win 1000gp!" );
-					from.AddToBackpack( new BankCheck( 1000 ) );
+					from.BankBox.DropItem( new BankCheck( 1000 ) );
 				}
 				else // Loser!
 				{
@@ -94,7 +94,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( 0x22, "You need at least 250gp in your backpack to use this." );
+				from.SendMessage( 0x22, "You need at least 250gp in your bank to use this." );
 			}
 		}
 
