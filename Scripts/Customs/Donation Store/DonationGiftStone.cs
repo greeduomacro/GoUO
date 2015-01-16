@@ -28,6 +28,7 @@
 using System;
 using System.Collections;
 using Server;
+using Server.Commands;
 using Server.Items;
 using Server.Mobiles;
 using Server.Accounting;
@@ -50,6 +51,22 @@ namespace Server.Items
 		{
 			Movable = false;
 			Hue = 0x489;
+		}
+		
+		public static void Initialize()
+        {
+           CommandSystem.Register("checkdonate", AccessLevel.Player, new CommandEventHandler(CheckDonations_OnCommand));
+        }
+		
+		public static void CheckDonations_OnCommand( CommandEventArgs e )
+		{
+			Mobile from = e.Mobile;
+			
+			Accounting.Account account = from.Account as Accounting.Account;
+			string accountName = account.Username;
+			
+			from.SendGump( new DonationStoreGump( from ) );
+			
 		}
 
         public override void OnDoubleClick(Mobile from)
