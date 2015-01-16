@@ -28,7 +28,6 @@
 using System;
 using System.Collections;
 using Server;
-using Server.Commands;
 using Server.Items;
 using Server.Mobiles;
 using Server.Accounting;
@@ -36,23 +35,14 @@ using Server.Engines.Quests;
 using Server.Engines.Quests.Necro;
 using Server.Engines.PlayerDonation;
 using Server.Gumps;
+using Server.Commands;
 
-namespace Server.Items
+namespace Server.Gumps
 {
-	public class DonationGiftStone : Item
-	{
-		public override string DefaultName
-		{
-			get { return "Double click this stone to redeem your donation gift here"; }
-		}
 
-		[Constructable]
-        public DonationGiftStone() : base(0xED4)
-		{
-			Movable = false;
-			Hue = 0x489;
-		}
-		
+	public class DonationStoreGump : Gump
+	{
+
 		public static void Initialize()
         {
            CommandSystem.Register("checkdonate", AccessLevel.Player, new CommandEventHandler(CheckDonations_OnCommand));
@@ -69,41 +59,6 @@ namespace Server.Items
 			
 		}
 
-        public override void OnDoubleClick(Mobile from)
-        {
-			//check database for this player's account
-			Accounting.Account account = from.Account as Accounting.Account;
-			string accountName = account.Username;
-			
-			from.SendGump( new DonationStoreGump( from ) );
-        }
-		
-		public DonationGiftStone(Serial serial) : base(serial)   
-		{
-		}
-
-		public override void Serialize( GenericWriter writer )
-		{
-			base.Serialize( writer );
-
-			writer.Write( (int) 0 ); // version
-		}
-
-		public override void Deserialize( GenericReader reader )
-		{
-			base.Deserialize( reader );
-
-			int version = reader.ReadInt();
-		}
-	}
-}
-
-
-
-namespace Server.Gumps
-{
-	public class DonationStoreGump : Gump
-	{
 		private Mobile m_From;
 		private long[] m_GiftIDs = new long[5];
 		
@@ -171,6 +126,5 @@ namespace Server.Gumps
 				}
 			}
 		}
-
 	}
 }
