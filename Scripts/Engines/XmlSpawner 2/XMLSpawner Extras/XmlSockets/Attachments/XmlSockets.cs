@@ -135,7 +135,7 @@ namespace Server.Engines.XmlSpawner2
         
 		public static new void Initialize()
 		{
-			CommandSystem.Register( "AddSocket", AccessLevel.Player, new CommandEventHandler( AddSocket_OnCommand ) );
+			CommandSystem.Register( "AddSocket", AccessLevel.Administrator, new CommandEventHandler( AddSocket_OnCommand ) );
 			TargetCommands.Register( new UpgradeAugmentCommand() );
 			TargetCommands.Register( new LimitSocketsCommand() );
 		}

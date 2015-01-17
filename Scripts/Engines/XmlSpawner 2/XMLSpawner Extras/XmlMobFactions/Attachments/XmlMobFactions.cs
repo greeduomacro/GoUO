@@ -190,10 +190,10 @@ namespace Server.Engines.XmlSpawner2
 			// stress testing
 			//Timer.DelayCall( TimeSpan.FromSeconds(15),TimeSpan.FromSeconds(15), new TimerCallback( XmlSpawner.XmlTrace_OnCommand ) );
 
-			CommandSystem.Register("VerboseMobFactions", AccessLevel.Player, new CommandEventHandler(VerboseMobFactions_OnCommand));
+			CommandSystem.Register("VerboseMobFactions", AccessLevel.Administrator, new CommandEventHandler(VerboseMobFactions_OnCommand));
 			CommandSystem.Register("AddAllMobFactions", AccessLevel.Administrator, new CommandEventHandler(AddAllMobFactions_OnCommand));
 			CommandSystem.Register("RemoveAllMobFactions", AccessLevel.Administrator, new CommandEventHandler(RemoveAllMobFactions_OnCommand));
-			CommandSystem.Register("CheckMobFactions", AccessLevel.Player, new CommandEventHandler(CheckMobFactions_OnCommand));
+			CommandSystem.Register("CheckMobFactions", AccessLevel.Administrator, new CommandEventHandler(CheckMobFactions_OnCommand));
 
 			// set up all of the mob factions
 

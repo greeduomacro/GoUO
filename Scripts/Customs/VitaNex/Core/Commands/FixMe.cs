@@ -54,7 +54,7 @@ namespace VitaNex.Commands
 
 			CommandSystem.Register(
 				"FixMe",
-				AccessLevel.Player,
+				AccessLevel.GameMaster,
 				e =>
 				{
 					if (e == null || e.Mobile == null || !(e.Mobile is PlayerMobile))
