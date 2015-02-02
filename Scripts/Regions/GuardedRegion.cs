@@ -357,7 +357,8 @@ namespace Server.Regions
 			if ( m is BaseGuard || !m.Alive || m.AccessLevel > AccessLevel.Player || m.Blessed || ( m is BaseCreature && ((BaseCreature)m).IsInvulnerable ) || IsDisabled() )
 				return false;
 
-			return (mobileState == null && m.Kills >= 5) || m.Criminal;
+			return (mobileState == null && m.Criminal);
+// Original Zycron	return (mobileState == null && m.Kills >= 5) || m.Criminal;
 		}
 
 		private class GuardTimer : Timer
