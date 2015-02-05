@@ -11,6 +11,8 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
+    <ProductVersion>12.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +43,8 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <UseVSHostingProcess>true</UseVSHostingProcess>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -50,6 +54,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -504,8 +509,6 @@
     <Compile Include="Engines\MLQuests\Rewards\BaseReward.cs" />
     <Compile Include="Engines\MLQuests\Rewards\DummyReward.cs" />
     <Compile Include="Engines\MLQuests\Rewards\ItemReward.cs" />
-    <Compile Include="Engines\Motd\motd.cs" />
-    <Compile Include="Engines\Motd\motd_gump.cs" />
     <Compile Include="Engines\MyRunUO\Config.cs" />
     <Compile Include="Engines\MyRunUO\DatabaseCommandQueue.cs" />
     <Compile Include="Engines\MyRunUO\LayerComparer.cs" />
@@ -3291,7 +3294,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Server\Server.csproj">
-      <Project>{0b33ceeb-88e1-49a6-8d7d-af6a5a357087}</Project>
+      <Project>{0B33CEEB-88E1-49A6-8D7D-AF6A5A357087}</Project>
       <Name>Server</Name>
     </ProjectReference>
   </ItemGroup>
