@@ -147,7 +147,7 @@ namespace Server.Regions
 			}
 			else if ( from is BaseCreature && !((BaseCreature)from).Controlled ) // Untamed creatures cannot enter public houses
 			{
-				return false;
+//Zycron Edit				return false;
 			}
 			else if ( from is BaseCreature && ((BaseCreature)from).IsHouseSummonable && !(BaseCreature.Summoning || m_House.IsInside( oldLocation, 16 )) )
 			{
