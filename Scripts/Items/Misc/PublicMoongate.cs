@@ -260,6 +260,7 @@ Zycron */
 					/* Dynamic Z for Magincia to support both old and new maps. */
 					new PMEntry( new Point3D( 3563, 2139, Map.Felucca.GetAverageZ( 3563, 2139 ) ), 1012010 ), // (New) Magincia
 					new PMEntry( new Point3D( 2711, 2234, 0 ), 1019001 ),  // Buccaneer's Den
+					new PMEntry( new Point3d( 5336, 3959, 1 ), 1011058 )   // Delucia
 				} );
 /*Zycron
 
@@ -368,7 +369,7 @@ Zycron*/
 
 			AddPage( 0 );
 
-			AddBackground( 0, 0, 380, 280, 5054 );
+			AddBackground( 0, 0, 380, 315, 5054 );
 
 			AddButton( 10, 210, 4005, 4007, 1, GumpButtonType.Reply, 0 );
 			AddHtmlLocalized( 45, 210, 140, 25, 1011036, false, false ); // OKAY
